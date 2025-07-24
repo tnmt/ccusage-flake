@@ -26,14 +26,13 @@
 
           src = pkgs.fetchzip {
             url = "https://registry.npmjs.org/ccusage/-/ccusage-15.5.0.tgz";
-            sha256 = "sha256-ce0QzFZV+5ZXCbKuCTaYiFcTsYWDsmYCnfVojVUzmbY=";
+            sha256 = "sha256-hUcN2e83ql3PEnxk8QvlIZsdSpwjRakQuDsuJFrUH/Q=";
             stripRoot = true;
           };
 
           nativeBuildInputs = [ pkgs.makeWrapper ];
 
           installPhase = ''
-            cd package
             mkdir -p $out/ccusage
             cp -r dist $out/ccusage/
             cp package.json $out/
