@@ -17,7 +17,7 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        nodejs = pkgs.nodejs_20; # または必要なバージョン
+        nodejs = pkgs.nodejs_22; # または必要なバージョン
       in
       {
         packages.default = pkgs.stdenv.mkDerivation {
