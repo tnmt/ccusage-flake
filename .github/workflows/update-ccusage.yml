@@ -42,12 +42,12 @@ jobs:
         if: steps.run_update.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
-          commit-message: "chore(ccusage): bump to latest"
-          title: "chore(ccusage): bump to latest"
+          commit-message: "chore(ccusage): bump ${{ steps.run_update.outputs.from }} -> ${{ steps.run_update.outputs.to }}"
+          title: "chore(ccusage): bump ${{ steps.run_update.outputs.from }} -> ${{ steps.run_update.outputs.to }}"
           body: |
             Automated update for ccusage via update workflow.
-            - Updated flake.nix version, URL and sha256
+            - Version: `${{ steps.run_update.outputs.from }}` -> `${{ steps.run_update.outputs.to }}`
+            - Updated `flake.nix` (version, URL, sha256)
             - Built with `nix build` for validation
           branch: chore/update-ccusage
           delete-branch: true
-

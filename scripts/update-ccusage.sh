@@ -68,4 +68,12 @@ perl -0777 -i -pe '
 
 echo "[update-ccusage] flake.nix を更新しました: ${current_version} -> ${latest_version}"
 
+# Export versions to GitHub Actions step outputs if available
+if [ -n "${GITHUB_OUTPUT:-}" ]; then
+  {
+    echo "from=${current_version}"
+    echo "to=${latest_version}"
+  } >> "$GITHUB_OUTPUT"
+fi
+
 exit 0
