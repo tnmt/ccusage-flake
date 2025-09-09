@@ -1,0 +1,53 @@
+name: Update ccusage
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "0 3 * * 1" # 毎週月曜 12:00 JST 相当
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v14
+
+      - name: Use Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@v8
+
+      - name: Install jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      - name: Run updater
+        id: run_update
+        run: |
+          chmod +x scripts/update-ccusage.sh
+          ./scripts/update-ccusage.sh || true
+          if ! git diff --quiet; then echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Build to validate
+        if: steps.run_update.outputs.changed == 'true'
+        run: nix build
+
+      - name: Create PR
+        if: steps.run_update.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore(ccusage): bump to latest"
+          title: "chore(ccusage): bump to latest"
+          body: |
+            Automated update for ccusage via update workflow.
+            - Updated flake.nix version, URL and sha256
+            - Built with `nix build` for validation
+          branch: chore/update-ccusage
+          delete-branch: true
+
