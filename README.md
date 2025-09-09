@@ -39,4 +39,4 @@ nix run
 
 ## About ccusage
 
-ccusage is a CLI tool for tracking cloud costs and usage metrics. This flake packages ccusage v15.5.0 with Node.js 22 runtime for reproducible deployments.
+ccusage is a CLI tool for tracking cloud costs and usage metrics. This flake packages ccusage with Node.js 22 runtime for reproducible deployments.

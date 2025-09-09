@@ -2,7 +2,7 @@
   description = "ccusage with embedded Node.js runtime";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -22,11 +22,11 @@
       {
         packages.default = pkgs.stdenv.mkDerivation {
           pname = "ccusage";
-          version = "15.5.0";
+          version = "16.2.3";
 
           src = pkgs.fetchzip {
-            url = "https://registry.npmjs.org/ccusage/-/ccusage-15.5.0.tgz";
-            sha256 = "sha256-hUcN2e83ql3PEnxk8QvlIZsdSpwjRakQuDsuJFrUH/Q=";
+            url = "https://registry.npmjs.org/ccusage/-/ccusage-16.2.3.tgz";
+            sha256 = "sha256-qCscngOapxh39HpJBmNzusA3stlYf2p35QelcBDxOaY=";
             stripRoot = true;
           };
 
