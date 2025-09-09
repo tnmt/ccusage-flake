@@ -49,5 +49,6 @@ jobs:
             - Version: `${{ steps.run_update.outputs.from }}` -> `${{ steps.run_update.outputs.to }}`
             - Updated `flake.nix` (version, URL, sha256)
             - Built with `nix build` for validation
-          branch: chore/update-ccusage
+          branch: chore/ccusage-bump-${{ steps.run_update.outputs.to }}
+          branch-suffix: timestamp
           delete-branch: true
