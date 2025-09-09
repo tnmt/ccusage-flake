@@ -17,7 +17,7 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        nodejs = pkgs.nodejs_22; # または必要なバージョン
+        nodejs = pkgs.nodejs_22; # or desired version
       in
       {
         packages.default = pkgs.stdenv.mkDerivation {
@@ -37,7 +37,7 @@
             cp -r dist $out/ccusage/
             cp package.json $out/
 
-            # 実行スクリプトを作成（Node.js のパスを固定）
+            # Create wrapper script (pin Node.js path)
             mkdir -p $out/bin
             makeWrapper ${nodejs}/bin/node $out/bin/ccusage \
               --add-flags "$out/ccusage/dist/index.js"
