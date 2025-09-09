@@ -41,18 +41,18 @@ nix run
 
 ccusage is a CLI tool for tracking cloud costs and usage metrics. This flake packages ccusage with Node.js 22 runtime for reproducible deployments.
 
-## 自動アップデート（追従）
+## Auto-update
 
-- 仕組み: `scripts/update-ccusage.sh` が npm の最新バージョンとハッシュを取得し、`flake.nix` の `version/url/sha256` を更新します。
-- CI: `.github/workflows/update-ccusage.yml` が毎週実行し、変更があればビルド検証後に PR を自動作成します。
+- Mechanism: `scripts/update-ccusage.sh` fetches the latest version and SRI hash from npm and updates `version/url/sha256` in `flake.nix`.
+- CI: `.github/workflows/update-ccusage.yml` runs weekly and, if changes exist, validates with `nix build` and opens a PR.
 
-### 手動で更新する場合
+### Update manually
 ```bash
-# jq と Nix が必要です
+# Requires jq and Nix
 ./scripts/update-ccusage.sh
-nix build   # 変更があればビルド検証
+nix build   # validate the change
 ```
 
-### CI を無効化/調整
-- スケジュール変更: `.github/workflows/update-ccusage.yml` の `cron` を編集してください。
-- 自動 PR 無効化: ワークフローを削除するか、`Create PR` ステップをコメントアウトしてください。
+### Adjust/disable CI
+- Change schedule: edit the `cron` in `.github/workflows/update-ccusage.yml`.
+- Disable auto PRs: remove the workflow or comment out the `Create PR` step.
