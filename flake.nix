@@ -22,11 +22,11 @@
       {
         packages.default = pkgs.stdenv.mkDerivation {
           pname = "ccusage";
-          version = "17.2.1";
+          version = "18.0.5";
 
           src = pkgs.fetchzip {
-            url = "https://registry.npmjs.org/ccusage/-/ccusage-17.2.1.tgz";
-            sha256 = "sha256-sl9Ot+dY59x+Md1addpAF3VXmSfRZ7x6OPzTkAZIOB8=";
+            url = "https://registry.npmjs.org/ccusage/-/ccusage-18.0.5.tgz";
+            sha256 = "sha256-i4UyRU7EA0PLduABnPGbcD8I06ZjmjwXCC77vtFM638=";
             stripRoot = true;
           };
 
